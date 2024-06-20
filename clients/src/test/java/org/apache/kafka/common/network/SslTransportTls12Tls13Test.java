@@ -51,7 +51,7 @@ public class SslTransportTls12Tls13Test {
         sslClientConfigs = clientCertStores.getTrustingConfig(serverCertStores);
 
         LogContext logContext = new LogContext();
-        ChannelBuilder channelBuilder = new SslChannelBuilder(Mode.CLIENT, null, false, logContext);
+        ChannelBuilder channelBuilder = new SslChannelBuilder(ConnectionMode.CLIENT, null, false, logContext);
         channelBuilder.configure(sslClientConfigs);
         this.selector = new Selector(5000, new Metrics(), TIME, "MetricGroup", channelBuilder, logContext);
     }
@@ -157,7 +157,7 @@ public class SslTransportTls12Tls13Test {
     }
 
     private void createSelector(Map<String, Object> sslClientConfigs) {
-        SslTransportLayerTest.TestSslChannelBuilder channelBuilder = new SslTransportLayerTest.TestSslChannelBuilder(Mode.CLIENT);
+        SslTransportLayerTest.TestSslChannelBuilder channelBuilder = new SslTransportLayerTest.TestSslChannelBuilder(ConnectionMode.CLIENT);
         channelBuilder.configureBufferSizes(null, null, null);
         channelBuilder.configure(sslClientConfigs);
         if (this.selector != null) {
