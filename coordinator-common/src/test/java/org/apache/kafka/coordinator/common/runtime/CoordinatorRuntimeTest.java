@@ -1100,9 +1100,9 @@ public class CoordinatorRuntimeTest {
         assertEquals(1L, runtime.contextOrThrow(coordinator1).coordinator.lastWrittenOffset());
         assertEquals(1L, runtime.contextOrThrow(coordinator2).coordinator.lastWrittenOffset());
 
-        assertEquals("record#0", List.of(records(timer.time().milliseconds())), writer.entries(coordinator0));
-        assertEquals("record#1", List.of(records(timer.time().milliseconds())), writer.entries(coordinator1));
-        assertEquals("record#2", List.of(records(timer.time().milliseconds())), writer.entries(coordinator2));
+        assertEquals(List.of(records(timer.time().milliseconds(), "record#0")), writer.entries(coordinator0));
+        assertEquals(List.of(records(timer.time().milliseconds(), "record#1")), writer.entries(coordinator1));
+        assertEquals(List.of(records(timer.time().milliseconds(), "record#2")), writer.entries(coordinator2));
 
         // Commit.
         writer.commit(coordinator0);
